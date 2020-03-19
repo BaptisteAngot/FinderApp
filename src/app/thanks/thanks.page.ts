@@ -16,7 +16,7 @@ export class ThanksPage implements OnInit {
   ngOnInit() {
   }
   redirect() {
-    this.router.navigate(['thanks']);
+    this.router.navigate(['selectschool']);
   }
 
    // Remove a key/value pair
