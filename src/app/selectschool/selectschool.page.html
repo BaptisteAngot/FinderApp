@@ -1,25 +1,22 @@
 <ion-content>
-  <ul>
-    <div class="campus">
-      <img src="../assets/icon/saintmarc.png"  alt="logo campus saint marc" />
-    </div>
-    <div class="ecole">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title class="school_title">Écoles</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    </div>
-      <section>
-        <header></header>
-        <ion-button class="schoolName" 
-          expand="block"
-          *ngFor="let school of tabschool[0]"
-          (click)="redirectCards(school.id)"
-          >{{school.name}}</ion-button
-        >
-      </section>
-   
-    <!-- <li *ngFor="let school of tabschool[0]"(click)="redirectCards(school.id)">Voir cette école: {{school.name}}</li> -->
-  </ul>
+  <div class="campus">
+    <img src="../assets/icon/saintmarc.png" alt="logo campus saint marc" />
+  </div>
+  <div class="ecole">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="school_title">Écoles</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  </div>
+
+  <section>
+    <ion-button
+      class="schoolName"
+      expand="block"
+      *ngFor="let school of tabschool[0]"
+      (click)="redirectCards(school.id)"
+      >{{school.name}}</ion-button
+    >
+  </section>
 </ion-content>
