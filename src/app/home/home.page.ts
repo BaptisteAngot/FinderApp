@@ -26,6 +26,10 @@ export class HomePage {
       email: [''],
       lastdiplome: [''],
     });
+
+    this.storage.get('schoolselect').then((response) => {
+      console.log(response);
+    })
   }
 
   get f() {
@@ -37,7 +41,6 @@ export class HomePage {
     this.submitted = true;
     this.loading = true;
     const val = this.register.value;
-    console.log(val);
     this.storage.set('info_user', val);
     this.router.navigate(['cards']);
   }
