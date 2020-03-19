@@ -8,20 +8,12 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
-import { ModalPageModule } from './modal/modal.module';
-
-import {Device} from '@ionic-native/device/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {CountStepServiceService} from './services/count-step-service.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +22,6 @@ import {CountStepServiceService} from './services/count-step-service.service';
   entryComponents: [],
   imports: [
       FormsModule,
-      ModalPageModule,
       BrowserModule,
       IonicModule.forRoot(),
       IonicStorageModule.forRoot(),
@@ -41,17 +32,8 @@ import {CountStepServiceService} from './services/count-step-service.service';
       })],
   providers: [
     AppComponent,
-    CountStepServiceService,
-    DeviceMotion,
-    Gyroscope,
     StatusBar,
     SplashScreen,
-    NgxMapboxGLModule,
-    AuthGuardService,
-    AuthService,
-    Device,
-    Geolocation,
-    BackgroundMode,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

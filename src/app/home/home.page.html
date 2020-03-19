@@ -1,9 +1,88 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Pastrack</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-content class="ion-margin-top ion-padding-top ion-text-center">
+    <form [formGroup]="register">
+      <h2>Nous avons besoin d'informations</h2>
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input
+                      type="text"
+                      name="nom"
+                      id="nom"
+                      formControlName="nom"
+                      class="form form_input"
+                      placeholder="nom"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                      type="text"
+                      name="prenom"
+                      id="prenom"
+                      formControlName="prenom"
+                      class="form form_input"
+                      placeholder="Prenom"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                      type="number"
+                      name="age"
+                      id="age"
+                      formControlName="age"
+                      class="form form_input"
+                      placeholder="age"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                      type="text"
+                      name="tel"
+                      id="tel"
+                      formControlName="tel"
+                      class="form form_input"
+                      placeholder="tel"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                      type="text"
+                      name="email"
+                      id="email"
+                      formControlName="email"
+                      class="form form_input"
+                      placeholder="Email"
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                      type="text"
+                      name="lastdiplome"
+                      id="lastdiplome"
+                      formControlName="lastdiplome"
+                      class="form form_input"
+                      placeholder="Dernier diplôme"
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="sign-up-col">
+          <ion-button
+                  expand="full"
+                  [disabled]="loading"
+                  shape="round"
+                  class="signup-col signup-col_btn"
+                  (click)="signup()"
+                  color="primary"
+          >
+            <span *ngIf="!loading">Commencer</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-content>
 
-<ion-content>
-  <ion-title>Bienvenue sur Pastrack</ion-title>
 </ion-content>

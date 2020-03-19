@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
+  register: FormGroup;
+  submitted = false;
+  loading = false;
 
-  constructor() { }
+  constructor(
+      private fb: FormBuilder,
+      private router: Router,
+      private storage: Storage
+  ) {
+    this.register = this.fb.group({
+      nom: [''],
+      prenom: [''],
+      age: [''],
+      tel: [''],
+      email: [''],
+      lastdiplome: [''],
+    });
+  }
 
-  ngOnInit() {
+  get f() {
+    return this.register.controls;
+  }
+
+
+  signup() {
+    this.submitted = true;
+    this.loading = true;
+    const val = this.register.value;
+    console.log(val);
+    this.storage.set('info_user', val);
+    this.router.navigate(['cards']);
   }
 
 }
