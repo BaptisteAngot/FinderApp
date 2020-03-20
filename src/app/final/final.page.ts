@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from "@angular/router";
+import { Storage} from "@ionic/storage";
 
 @Component({
   selector: 'app-final',
@@ -10,8 +11,10 @@ export class FinalPage implements OnInit {
 
   cards;
   constructor(
-      private router: Router
+      private router: Router,
+      private storage: Storage
   ) {
+    this.getResponseCard();
     this.cards = [];
     this.cards = this.loadTinderCards();
   }
@@ -31,6 +34,12 @@ export class FinalPage implements OnInit {
 
   logChoice(event) {
     this.router.navigate(['thanks'])
+  }
+
+  getResponseCard() {
+    this.storage.get('USER_INFO').then((reponse) => {
+      console.log(reponse);
+    })
   }
 
 }

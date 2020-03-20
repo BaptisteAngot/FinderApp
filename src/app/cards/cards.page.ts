@@ -2,9 +2,6 @@ import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {forEach} from "@angular-devkit/schematics";
-import {log} from "util";
-import {timeout} from "rxjs/operators";
 
 @Component({
     selector: 'app-cards',
@@ -46,33 +43,9 @@ export class CardsPage {
                 }, 100)
             }, 500);
         }, 100);
-        // this.cards = this.loadTinderCards();
-        this.numberOfCards = this.countcards();
-    }
-
-    loadTinderCards() {
-        return this.cards = [
-            {
-                img: 'https://placeimg.com/300/300/people',
-                title: 'Êtes vous beau ?',
-                description: 'Mais dans le fond, qu\'est ce que la beauté'
-            },
-            {
-                img: 'https://placeimg.com/300/300/animals',
-                title: 'Aimez vous les animaux ?',
-                description: 'Vous êtes fan de doggo ? Vous ne vous voyez pas votre vie dans petit minou'
-            },
-            {
-                img: 'https://placeimg.com/300/300/nature',
-                title: 'Demo card 3',
-                description: 'Les sorties dans les bois, qui sont à ce jour interdite'
-            },
-            {
-                img: 'https://placeimg.com/300/300/tech',
-                title: 'Jeux vidéo',
-                description: 'Il est pour vous impératif de rester Global Elite. Une partie de LOL ne vous fait pas peur.'
-            }
-        ];
+        setTimeout(() => {
+            this.numberOfCards = this.countcards();
+        }, 1000);
     }
 
     countcards() {
@@ -81,7 +54,7 @@ export class CardsPage {
 
     logChoice(event) {
         const response = {
-            cards: event.payload.title,
+            cards: event.payload.name,
             value: event.choice
         };
         this.tabresponse.push(response);
