@@ -18,11 +18,11 @@ export class ThanksPage implements OnInit {
   ngOnInit() {
   }
   redirect() {
-    this.router.navigate(['selectschool']);
     this.storage.remove('USER_INFO');
     this.storage.remove('bestform');
     this.storage.remove('info_user');
     this.storage.remove('schoolselect');
+    this.router.navigate(['selectschool']);
   }
 
    // Remove a key/value pair
