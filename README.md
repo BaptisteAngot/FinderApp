@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to PasTrack 👋</h1>
+<h1 align="center">Welcome to FinderApp 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/xbexf1264" target="_blank">
@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> An Ionic Health Project to count step of people and make graph.
+> An app to choose the good formation.
 
 ### 🏠 [Homepage](https://angotbaptiste.com)
 
