@@ -35,7 +35,6 @@ export class CardsPage {
         setTimeout(() => {
             this.getFormFromSchool(this.schoolselect);
             setTimeout(() => {
-                // console.log(Object.keys(this.listForm).length);
                 for (this.y = 0; Object.keys(this.listForm).length > this.y; this.y++) {
                     let toto = {
                         name: this.listForm[this.y].name,
@@ -46,13 +45,12 @@ export class CardsPage {
                     this.getCardsFromForm(this.listForm[this.y].id);
                 }
                 setTimeout(() => {
-                    console.log(this.cardsByForm)
                 }, 100)
             }, 500);
-        }, 100);
+        }, 1000);
         setTimeout(() => {
             this.numberOfCards = this.countcards();
-        }, 1000);
+        }, 2000);
     }
 
     countcards() {
@@ -60,6 +58,8 @@ export class CardsPage {
     }
 
     logChoice(event) {
+        console.log(this.i);
+        console.log(this.numberOfCards);
         if (this.numberOfCards - 1 > this.i) {
             const response = {
                 cards: event.payload.name,
@@ -81,7 +81,6 @@ export class CardsPage {
          else {
              let plusgrand = 0;
              let meilleurform;
-            console.log(this.tabResultGlobal);
             this.tabResultGlobal.forEach((element) => {
                 if (element.points > plusgrand) {
                     plusgrand = element.points;

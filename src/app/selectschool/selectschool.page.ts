@@ -32,6 +32,7 @@ export class SelectschoolPage implements OnInit {
   }
 
   redirectCards(idcschool) {
+    console.log(idcschool);
     this.storage.set('schoolselect', idcschool);
     this.router.navigate(['home']);
   }
