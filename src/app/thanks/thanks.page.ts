@@ -10,13 +10,19 @@ import { Storage} from '@ionic/storage';
 })
 export class ThanksPage implements OnInit {
 
-  constructor( private router: Router,
-    private storage: Storage) { }
+  constructor(
+      private router: Router,
+      private storage: Storage
+  ) { }
 
   ngOnInit() {
   }
   redirect() {
     this.router.navigate(['selectschool']);
+    this.storage.remove('USER_INFO');
+    this.storage.remove('bestform');
+    this.storage.remove('info_user');
+    this.storage.remove('schoolselect');
   }
 
    // Remove a key/value pair
