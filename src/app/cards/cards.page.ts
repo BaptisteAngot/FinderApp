@@ -24,6 +24,7 @@ export class CardsPage {
     listForm = [];
     cardsByForm = [];
     private y: any;
+    tabResultGlobal = [];
 
     constructor(
         private storage: Storage,
@@ -36,6 +37,12 @@ export class CardsPage {
             setTimeout(() => {
                 // console.log(Object.keys(this.listForm).length);
                 for (this.y = 0; Object.keys(this.listForm).length > this.y; this.y++) {
+                    let toto = {
+                        name: this.listForm[this.y].name,
+                        id: this.listForm[this.y].id,
+                        points: 0
+                    };
+                    this.tabResultGlobal.push(toto);
                     this.getCardsFromForm(this.listForm[this.y].id);
                 }
                 setTimeout(() => {
@@ -53,16 +60,38 @@ export class CardsPage {
     }
 
     logChoice(event) {
-        const response = {
-            cards: event.payload.name,
-            value: event.choice
-        };
-        this.tabresponse.push(response);
         if (this.numberOfCards - 1 > this.i) {
-            this.i++
-        } else {
-            this.sendInSession(this.tabresponse);
-            this.router.navigate(['final']);
+            const response = {
+                cards: event.payload.name,
+                points: event.payload.points,
+                value: event.choice,
+                formation: event.payload.formation
+            };
+            if (event) {
+                if (event.choice == true) {
+                    this.tabResultGlobal.forEach((formation) => {
+                        if (formation.id == response.formation) {
+                            formation.points = formation.points + response.points;
+                        }
+                    });
+                }
+            }
+            this.i++;
+        }
+         else {
+             let plusgrand = 0;
+             let meilleurform;
+            console.log(this.tabResultGlobal);
+            this.tabResultGlobal.forEach((element) => {
+                if (element.points > plusgrand) {
+                    plusgrand = element.points;
+                    meilleurform = element.name;
+                }
+            });
+            if (plusgrand > 1){
+                this.storage.set('bestform', meilleurform);
+                this.router.navigate(['final']);
+            }
         }
     }
 

@@ -1,3 +1,3 @@
-<ion-content>
+<ion-content *ngIf="load==true">
   <app-tinder-ui [cards]="cards" (choiceMade)="logChoice($event)"></app-tinder-ui>
 </ion-content>
