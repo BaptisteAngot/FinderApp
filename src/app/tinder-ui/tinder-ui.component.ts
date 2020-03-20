@@ -9,8 +9,8 @@ export class TinderUiComponent implements OnInit {
 
   // tslint:disable-next-line:no-input-rename
   @Input('cards') cards: Array<{
-    img: string,
-    title: string,
+    pic: string,
+    name: string,
     description: string
   }>;
 

@@ -25,8 +25,8 @@
     <div #tinderCard class="tinder--card" (transitionend)="handleShift()" *ngFor="let card of cards; let i = index"
          [ngStyle]="{ zIndex: cards.length - i, transform: 'scale(' + (20 - i) / 20 + ') translateY(-' + 20 * i + 'px)' }">
 
-      <img #tinderCardImage [src]="card.img" (load)="tinderCardImage.style.opacity = String(1)">
-      <h3 class="black">{{ card.title }}</h3>
+      <img #tinderCardImage [src]="card.pic" (load)="tinderCardImage.style.opacity = String(1)">
+      <h3 class="black">{{ card.name }}</h3>
       <p class="black">{{ card.description }}</p>
 
     </div>

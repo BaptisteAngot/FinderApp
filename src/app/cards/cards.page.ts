@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {forEach} from "@angular-devkit/schematics";
 import {log} from "util";
+import {timeout} from "rxjs/operators";
 
 @Component({
     selector: 'app-cards',
@@ -12,11 +13,11 @@ import {log} from "util";
 })
 export class CardsPage {
 
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-        .append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization,  X-Auth')
-        .append('Access-Control-Allow-Origin', 'http://185.216.25.16:7000/')
-  };
+    httpOptions = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+            .append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization,  X-Auth')
+            .append('Access-Control-Allow-Origin', 'http://185.216.25.16:7000/')
+    };
     cards;
     tabresponse = [];
     i = 0;
@@ -24,21 +25,29 @@ export class CardsPage {
     schoolselect;
     apiUrl = 'http://185.216.25.16:7000/';
     listForm = [];
-    cardsByForm= [];
+    cardsByForm = [];
+    private y: any;
 
     constructor(
         private storage: Storage,
         private router: Router,
         private api: HttpClient
-        ) {
-      this.getschool();
-      setTimeout(() => {
-        this.getFormFromSchool(this.schoolselect);
-        console.log(this.listForm);
-      }, 50);
-      this.cards = [];
-      this.cards = this.loadTinderCards();
-      this.numberOfCards = this.countcards();
+    ) {
+        this.getschool();
+        setTimeout(() => {
+            this.getFormFromSchool(this.schoolselect);
+            setTimeout(() => {
+                // console.log(Object.keys(this.listForm).length);
+                for (this.y = 0; Object.keys(this.listForm).length > this.y; this.y++) {
+                    this.getCardsFromForm(this.listForm[this.y].id);
+                }
+                setTimeout(() => {
+                    console.log(this.cardsByForm)
+                }, 100)
+            }, 500);
+        }, 100);
+        // this.cards = this.loadTinderCards();
+        this.numberOfCards = this.countcards();
     }
 
     loadTinderCards() {
@@ -67,7 +76,7 @@ export class CardsPage {
     }
 
     countcards() {
-        return Object.keys(this.cards).length;
+        return Object.keys(this.cardsByForm).length;
     }
 
     logChoice(event) {
@@ -99,17 +108,20 @@ export class CardsPage {
             this.schoolselect = response;
         })
     }
+
     getFormFromSchool(idschool) {
-      this.api.get(this.apiUrl+'formations/byschool/'+idschool, this.httpOptions).subscribe((data: any) => {
-          data.forEach(element => {
-              this.listForm.push(element);
-          });
-      });
+        this.api.get(this.apiUrl + 'formations/byschool/' + idschool, this.httpOptions).subscribe((data: any) => {
+            data.forEach(element => {
+                this.listForm.push(element);
+            });
+        });
     }
 
     getCardsFromForm(idForm) {
-      this.api.get(this.apiUrl+'cards/byformation/'+idForm, this.httpOptions).subscribe((data:any) => {
-        this.cardsByForm.push(data);
-      });
+        this.api.get(this.apiUrl + 'cards/byformation/' + idForm, this.httpOptions).subscribe((data: any) => {
+            data.forEach(element => {
+                this.cardsByForm.push(element);
+            });
+        });
     }
 }
